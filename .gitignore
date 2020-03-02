@@ -1,0 +1,10 @@
+__pycache__/
+test.torrent
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+.idea/
+telegram_interaction2.py
+*.swp
+telegram.py
