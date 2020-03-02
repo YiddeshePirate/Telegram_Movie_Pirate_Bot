@@ -1,8 +1,9 @@
-import requests
-from threading import Thread
-import time
-import ytsbot
 import os
+import requests
+import time
+from threading import Thread
+
+import ytsbot
 
 telegram_key = os.environ.get('TELEGRAM_KEY')
 print(telegram_key)
@@ -38,7 +39,7 @@ def wait_for_message(instance, timeout=180):
     print("waiting")
     start_time = time.perf_counter()
     while (
-        old_message_id == latestupdateid and time.perf_counter() - start_time < timeout
+            old_message_id == latestupdateid and time.perf_counter() - start_time < timeout
     ):
         pass
     if time.perf_counter() - start_time > timeout:
@@ -59,7 +60,6 @@ def lookforstart():
     while True:
         time.sleep(0.005)
         if latest_message == "/start" and latestfrom not in sessions:
-
             sessions.append(latestfrom)
             x = request(latestfrom)
             x.startthread()
@@ -83,7 +83,7 @@ class request:
 
         start_time = time.perf_counter()
         while (
-            (old_message_id == latestupdateid) or latestfrom != self.chat_id
+                (old_message_id == latestupdateid) or latestfrom != self.chat_id
         ) and time.perf_counter() - start_time < timeout:
             pass
         self.nm = latest_message
