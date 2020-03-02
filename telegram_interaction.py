@@ -32,9 +32,6 @@ t1 = Thread(target=updating_message)
 t1.start()
 
 
-
-
-
 def wait_for_message(instance, timeout=180):
     global updatepage
     old_message_id = latestupdateid
@@ -66,7 +63,6 @@ def lookforstart():
             sessions.append(latestfrom)
             x = request(latestfrom)
             x.startthread()
-
 
 
 class request:
@@ -142,5 +138,6 @@ class request:
             self.send_chat_message("Something went wrong")
             self.terminate()
             return 1
+
 
 lookforstart()
