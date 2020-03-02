@@ -1,9 +1,10 @@
 import pickle
-import time
 import requests
+import time
 from bs4 import BeautifulSoup
 
 from qbitools import download_torrent_from_file, get_progress, download_torrent_from_magnet
+
 
 def get_search_links_ai(search_string):
     search_string = search_string.replace(" ", "+")
@@ -15,7 +16,8 @@ def get_search_links_ai(search_string):
     movies = []
     for i in lnks:
         page_link = i["href"]
-        name = page_link.split("/")[-2].replace("-", " ").capitalize() + " " + page_link.split("/")[-1].replace("-", " ").capitalize()
+        name = page_link.split("/")[-2].replace("-", " ").capitalize() + " " + page_link.split("/")[-1].replace("-",
+                                                                                                                " ").capitalize()
         movies.append((name, page_link))
     return movies
 
@@ -34,11 +36,7 @@ def get_search_links(search_string):
     return movies
 
 
-
-
-
 class Movie_suggestions():
-
 
     def __init__(self, joined_list):
         self.joined_list = joined_list
@@ -48,20 +46,11 @@ class Movie_suggestions():
         self.list_of_options = "\n\n".join(t)
 
 
-
-
-    
-
-
-
-
 class Movie(Movie_suggestions):
-
 
     def __init__(self, name_url):
         self.name = name_url[0]
         self.url = name_url[1]
-
 
     def load_torrent(self, quality):
         url = self.url
@@ -83,13 +72,11 @@ class Movie(Movie_suggestions):
         # print(self.torrent_link)
         print(magnets[0])
 
-
     def download_from_file(self, quality):
         self.load_torrent(quality)
         self.hash = download_torrent_from_file(self.torrentfilebytes)
 
     def download_from_magnet(self, quality):
-
         self.load_magnet(quality)
         # time.sleep(2)
         self.hash = download_torrent_from_magnet(self.torrent_link)
@@ -101,11 +88,6 @@ class Movie(Movie_suggestions):
         percent_message = f'{self.percent}% done'
         eta_message = f'{self.eta[0]} hour(s) and {self.eta[1]} minute(s) remaining'
         self.waiting_message = percent_message + "\n" + eta_message
-
-
-
-
-
 
 
 def request():
@@ -134,6 +116,6 @@ def request():
     #   print(working_movie.percent, "\n", working_movie.eta)
     #   time.sleep(5)
 
-if __name__ == "__main__":
 
-  request()
+if __name__ == "__main__":
+    request()
